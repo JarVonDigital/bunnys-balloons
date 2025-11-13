@@ -1,0 +1,22 @@
+<p-panel header="Packages & Pricing">
+  <p class="p-mt-0">Every package can be tailored with add-ons, premium installs, and travel.</p>
+
+  @if (packages$ | async; as packages) {
+    <div class="p-grid p-gap-3">
+      @for (pkg of packages; track pkg.id) {
+        <div class="p-col-12 md:p-col-6">
+          <p-card [header]="pkg.title" [subheader]="(pkg.startingPrice | currency:'USD':'symbol') + '+'">
+            <p>{{ pkg.description }}</p>
+            <ul class="p-pl-3 p-m-0">
+              @for (item of pkg.includes; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          </p-card>
+        </div>
+      }
+    </div>
+  } @else {
+    <p>Loading package menu…</p>
+  }
+</p-panel>

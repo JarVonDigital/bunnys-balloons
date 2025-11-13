@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  --site-shell-header-height: clamp(3.75rem, 6vw, 4.75rem);
+}
+
+.site-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-ground, #fffaf1);
+}
+
+.site-shell__content {
+  flex: 1;
+  width: 100%;
+  --site-shell-padding: clamp(1.5rem, 4vw, 3.5rem);
+  padding: var(--site-shell-padding);
+  padding-top: calc(var(--site-shell-padding) + var(--site-shell-header-height, 4.5rem));
+}

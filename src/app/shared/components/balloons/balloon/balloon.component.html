@@ -1,0 +1,13 @@
+<div class="balloon" [ngStyle]="balloonStyles">
+  <span class="balloon__shine" aria-hidden="true"></span>
+  <span class="balloon__gloss" aria-hidden="true"></span>
+  <span class="balloon__knot" aria-hidden="true"></span>
+  <span class="balloon__string" aria-hidden="true" [class.balloon__string--animated]="hasAnimatedString">
+    <span
+      #stringHost
+      class="balloon__string-animation"
+      [class.balloon__string-animation--visible]="hasAnimatedString"
+    ></span>
+    <span class="balloon__string-fallback"></span>
+  </span>
+</div>

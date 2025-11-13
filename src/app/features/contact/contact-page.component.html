@@ -1,0 +1,232 @@
+<section class="contact">
+  <div class="contact__intro">
+    <p class="contact__eyebrow">Concierge balloon installs</p>
+    <h1>Tell us about your celebration</h1>
+    <p>
+      Share the mood, venue, and timing. We will respond with availability, design concepts, and an
+      estimated investment that reflects the artistry Bunny&apos;s Balloons is known for.
+    </p>
+    <div class="contact__chips">
+      @for (highlight of highlights; track highlight) {
+        <p-chip [label]="highlight"></p-chip>
+      }
+    </div>
+  </div>
+
+  <div class="contact__balloon-wrapper">
+    <form
+      #contactFormRef
+      [formGroup]="contactForm"
+      (ngSubmit)="submit()"
+      (focusout)="handleFormFocusOut($event)"
+      class="contact__form"
+    >
+      <div
+        class="contact__cluster"
+      >
+        <div class="contact__ambient" aria-hidden="true">
+          <span
+            #roseAmbient
+            class="contact__ambient-balloon contact__ambient-balloon--rose"
+            data-pointer-range="34"
+            (pointermove)="handleAmbientPointer($event, roseAmbient)"
+            (pointerleave)="resetAmbientPointerElement(roseAmbient)"
+          ></span>
+          <span
+            #sherbetAmbient
+            class="contact__ambient-balloon contact__ambient-balloon--sherbet"
+            data-pointer-range="28"
+            (pointermove)="handleAmbientPointer($event, sherbetAmbient)"
+            (pointerleave)="resetAmbientPointerElement(sherbetAmbient)"
+          ></span>
+          <span
+            #lavenderAmbient
+            class="contact__ambient-balloon contact__ambient-balloon--lavender"
+            data-pointer-range="26"
+            (pointermove)="handleAmbientPointer($event, lavenderAmbient)"
+            (pointerleave)="resetAmbientPointerElement(lavenderAmbient)"
+          ></span>
+          <span
+            #goldAmbient
+            class="contact__ambient-balloon contact__ambient-balloon--gold"
+            data-pointer-range="22"
+            (pointermove)="handleAmbientPointer($event, goldAmbient)"
+            (pointerleave)="resetAmbientPointerElement(goldAmbient)"
+          ></span>
+        </div>
+        <div
+          class="contact__balloon contact__balloon--details"
+          #balloon
+          data-focus-direction="left"
+          (focusin)="onBalloonFocus('details', balloon)"
+          [class.is-active]="activeBalloon() === 'details'"
+        >
+          <div class="contact__balloon-content">
+            <p class="contact__section-title">Your details</p>
+            <div class="contact__fields contact__fields--two">
+              <div class="contact__field">
+                <label for="name">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  pInputText
+                  pSize="small"
+                  class="contact__control"
+                  formControlName="name"
+                  required
+                />
+              </div>
+
+              <div class="contact__field">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  type="email"
+                  pInputText
+                  pSize="small"
+                  class="contact__control"
+                  formControlName="email"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <span class="contact__shine" aria-hidden="true"></span>
+          <span class="contact__gloss" aria-hidden="true"></span>
+          <span class="contact__texture" aria-hidden="true"></span>
+          <span class="contact__halo" aria-hidden="true"></span>
+        </div>
+
+        <div
+          class="contact__balloon contact__balloon--event"
+          #balloon
+          data-focus-direction="right"
+          (focusin)="onBalloonFocus('event', balloon)"
+          [class.is-active]="activeBalloon() === 'event'"
+        >
+          <div class="contact__balloon-content">
+            <p class="contact__section-title">Event snapshot</p>
+            <div class="contact__fields contact__fields--two">
+              <div class="contact__field">
+                <label for="eventDate">Event Date</label>
+                <button
+                  type="button"
+                  pButton
+                  size="small"
+                  icon="pi pi-calendar"
+                  [label]="eventDateLabel"
+                  class="contact__calendar-button"
+                  [class.is-invalid]="isEventDateInvalid()"
+                  (click)="openEventDateDialog()"
+                  id="eventDate"
+                ></button>
+              </div>
+
+              <div class="contact__field">
+                <label for="packageId">Preferred Package</label>
+                <input
+                  id="packageId"
+                  type="text"
+                  pInputText
+                  pSize="small"
+                  class="contact__control"
+                  formControlName="packageId"
+                  placeholder="Garlands, Installations, etc."
+                />
+              </div>
+            </div>
+          </div>
+          <span class="contact__shine" aria-hidden="true"></span>
+          <span class="contact__gloss" aria-hidden="true"></span>
+          <span class="contact__texture" aria-hidden="true"></span>
+          <span class="contact__halo" aria-hidden="true"></span>
+        </div>
+
+        <div
+          class="contact__balloon contact__balloon--message"
+          #balloon
+          data-focus-direction="center"
+          (focusin)="onBalloonFocus('message', balloon)"
+          [class.is-active]="activeBalloon() === 'message'"
+        >
+          <div class="contact__balloon-content">
+            <p class="contact__section-title">Mood board or notes</p>
+            <div class="contact__field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                pInputTextarea
+                pSize="small"
+                rows="5"
+                formControlName="message"
+                class="contact__control contact__control--textarea"
+                placeholder="Share colors, venue vibes, or anything that inspires you."
+                required
+              ></textarea>
+            </div>
+          </div>
+          <span class="contact__shine" aria-hidden="true"></span>
+          <span class="contact__gloss" aria-hidden="true"></span>
+          <span class="contact__texture" aria-hidden="true"></span>
+          <span class="contact__halo" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="contact__tether">
+        <svg
+          class="contact__strings"
+          viewBox="0 0 620 240"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="contactStringGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+              <stop offset="65%" stop-color="#f5d28a" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#b9802a" stop-opacity="0.9" />
+            </linearGradient>
+          </defs>
+          <path
+            class="contact__string contact__string--details"
+            stroke="url(#contactStringGradient)"
+            vector-effect="non-scaling-stroke"
+            d="M140 5 C 95 80 150 150 220 190 S 300 230 310 235"
+          />
+          <path
+            class="contact__string contact__string--message"
+            stroke="url(#contactStringGradient)"
+            vector-effect="non-scaling-stroke"
+            d="M310 0 C 300 90 320 170 310 235"
+          />
+          <path
+            class="contact__string contact__string--event"
+            stroke="url(#contactStringGradient)"
+            vector-effect="non-scaling-stroke"
+            d="M480 10 C 535 90 440 150 360 195 S 320 230 310 235"
+          />
+        </svg>
+
+        <div class="contact__actions contact__actions--anchor">
+          <button
+            pButton
+            size="small"
+            type="submit"
+            label="Send Request"
+            icon="pi pi-send"
+            [loading]="isSubmitting()"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="contact__alerts">
+  @if (submitSuccess()) {
+    <p-message severity="success" text="Thanks! Expect a reply soon."></p-message>
+  }
+
+  @if (errorMessage(); as message) {
+    <p-message severity="error" [text]="message"></p-message>
+  }
+</div>

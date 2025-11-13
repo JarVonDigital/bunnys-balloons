@@ -1,0 +1,19 @@
+<div class="event-date-dialog">
+  <p-datepicker
+    [(ngModel)]="selectedDate"
+    [inline]="true"
+    [touchUI]="false"
+    (onSelect)="handleSelect($event)"
+  ></p-datepicker>
+
+  <button
+    type="button"
+    pButton
+    size="small"
+    severity="secondary"
+    icon="pi pi-times"
+    label="Clear date"
+    class="event-date-dialog__clear"
+    (click)="clearSelection()"
+  ></button>
+</div>

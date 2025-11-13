@@ -1,0 +1,26 @@
+<p-panel header="Calendar">
+  <p class="p-mt-0">Review open dates and submit a request for your celebration.</p>
+
+  @if (availability$ | async; as slots) {
+    <p-table [value]="slots" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-slot>
+        <tr>
+          <td>{{ slot.date | date: 'fullDate' }}</td>
+          <td>
+            <p-tag [severity]="statusSeverity(slot.status)" [value]="slot.status | titlecase"></p-tag>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  } @else {
+    <div class="p-d-flex p-jc-center p-ai-center p-py-4">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+  }
+</p-panel>

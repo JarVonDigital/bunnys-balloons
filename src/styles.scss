@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+:root {
+  color-scheme: light;
+  --font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --brand-espresso: #5c482e;
+  --brand-mahogany: #75360f;
+  --brand-rust: #a15512;
+  --brand-oat: #dfca9e;
+  --brand-cream: #eee8ce;
+  --surface-ground: var(--brand-cream);
+  --surface-card: #fffaf1;
+  --surface-overlay: color-mix(in srgb, #fffaf1 90%, transparent);
+  --primary-color: var(--brand-rust);
+  --text-color: #3b2818;
+  --text-color-secondary: color-mix(in srgb, var(--text-color) 70%, #ffffff 30%);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background: var(--surface-ground);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,58 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  --header-text-color: var(--brand-espresso, #3b2818);
+  --header-text-color-muted: color-mix(in srgb, var(--header-text-color) 65%, #ffffff 35%);
+  color: var(--header-text-color);
+}
+
+:host(.has-dark-backdrop) {
+  --header-text-color: #ffffff;
+  --header-text-color-muted: rgba(255, 255, 255, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+p-menubar {
+  background: transparent;
+  border: none;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+:host ::ng-deep .p-menubar {
+  color: var(--header-text-color);
+}
+
+:host ::ng-deep .p-menubar-root-list > .p-menuitem {
+  color: inherit;
+}
+
+:host ::ng-deep .p-menuitem-link {
+  color: inherit;
+  font-weight: 600;
+}
+
+:host ::ng-deep .p-menuitem-link .p-menuitem-text {
+  color: inherit;
+}
+
+:host ::ng-deep .p-menuitem-link .p-menuitem-icon {
+  color: var(--header-text-color-muted);
+}
+
+:host ::ng-deep .p-menuitem-link:hover .p-menuitem-text,
+:host ::ng-deep .p-menuitem-link:focus-visible .p-menuitem-text {
+  color: var(--header-text-color-muted);
+}
+
+:host ::ng-deep .p-menubar-start .p-button,
+:host ::ng-deep .p-menubar-end .p-button.p-button-text {
+  color: var(--header-text-color);
+}

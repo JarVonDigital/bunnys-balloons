@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  padding: 0.5rem 0.25rem 1rem;
+}
+
+.event-date-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.event-date-dialog__clear.p-button {
+  align-self: flex-end;
+}
+
+:host ::ng-deep .p-datepicker {
+  width: min(520px, 90vw);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+:host ::ng-deep .p-datepicker-inline {
+  width: 100%;
+}

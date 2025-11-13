@@ -1,0 +1,128 @@
+:host {
+  display: inline-flex;
+  perspective: 600px;
+}
+
+.balloon {
+  width: var(--balloon-width, 110px);
+  height: var(--balloon-height, 150px);
+  position: relative;
+  border-radius: 58% 58% 55% 55%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.65), transparent 48%),
+    radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.25), transparent 60%),
+    var(--balloon-fill, radial-gradient(circle at 30% 30%, #fff5d6, #f0bb4f 60%, #c8862b));
+  box-shadow:
+    inset 0 15px 30px rgba(255, 255, 255, 0.5),
+    inset 0 -25px 40px rgba(0, 0, 0, 0.12),
+    0 25px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1), filter 300ms ease;
+  will-change: transform;
+  overflow: visible;
+  transform:
+    translate3d(
+      calc(var(--balloon-base-x, 0px) + var(--balloon-drift-x, 0px)),
+      calc(var(--balloon-base-y, 0px) + var(--balloon-drift-y, 0px)),
+      0
+    )
+    rotate(var(--balloon-rotate, 0deg));
+
+  &__shine,
+  &__gloss,
+  &__knot,
+  &__string {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &__shine {
+    inset: 12% auto auto 14%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 60%);
+    filter: blur(2px);
+  }
+
+  &__gloss {
+    inset: 15% auto auto auto;
+    right: 18%;
+    width: 18%;
+    height: 60%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent 70%);
+    border-radius: 999px;
+    opacity: 0.65;
+  }
+
+  &__knot {
+    bottom: -8px;
+    left: 50%;
+    width: 24px;
+    height: 18px;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 40% 40%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.65), rgba(0, 0, 0, 0.15));
+    box-shadow: inset 0 -4px 6px rgba(0, 0, 0, 0.12);
+  }
+
+  &__string {
+    bottom: calc(var(--balloon-string-length, 135px) * -1 - 6px);
+    left: 50%;
+    width: var(--balloon-string-width, 36px);
+    height: var(--balloon-string-length, 135px);
+    position: absolute;
+    transform: translateX(-50%) rotate(var(--balloon-string-lean, 0deg));
+    transform-origin: top center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    pointer-events: none;
+    filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.25));
+  }
+
+  &__string-animation {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 360ms ease;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform-origin: top center;
+    }
+  }
+
+  &__string-animation--visible {
+    opacity: 1;
+  }
+
+  &__string-fallback {
+    position: absolute;
+    inset: 0;
+    width: 2px;
+    margin: 0 auto;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(0, 0, 0, 0.35));
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.25);
+    opacity: 0.55;
+    transition: opacity 240ms ease;
+  }
+
+  &__string--animated &__string-fallback {
+    opacity: 0.18;
+  }
+}
+
+:host(:hover) .balloon {
+  filter: brightness(1.03);
+  transform:
+    translate3d(
+      calc(var(--balloon-base-x, 0px) + var(--balloon-drift-x, 0px)),
+      calc(var(--balloon-base-y, 0px) + var(--balloon-drift-y, 0px) - 6px),
+      0
+    )
+    rotate(var(--balloon-rotate, 0deg))
+    scale(1.02);
+}

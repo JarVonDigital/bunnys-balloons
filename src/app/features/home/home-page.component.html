@@ -1,0 +1,132 @@
+<section class="hero-shell">
+  <div class="hero-shell__foreground">
+    <section class="hero">
+      <div class="hero__content" appFadeInOnScroll>
+        <span class="hero__eyebrow">Bunny's Balloons · Est. 2019</span>
+        <h1>
+          Inflate the
+          <span class="text-highlight">wonder</span>
+          for every celebration.
+        </h1>
+        <p class="hero__lead">
+          Veronica Bunny transforms spaces with sculpted balloon art, oversized installations, and
+          joyful palettes designed to match your brand or milestone.
+        </p>
+        <div class="hero__actions">
+          <button
+            pButton
+            size="small"
+            label="Plan your install"
+            icon="pi pi-sparkles"
+            routerLink="/packages"
+            type="button"
+          ></button>
+          <button
+            pButton
+            size="small"
+            label="Talk to Veronica"
+            icon="pi pi-comment"
+            severity="secondary"
+            routerLink="/contact"
+            type="button"
+          ></button>
+        </div>
+        <div class="hero__badges">
+          <div class="hero__badge">
+            <span class="badge-title">400+</span>
+            <span class="badge-copy">balloon moments delivered</span>
+          </div>
+          <div class="hero__badge">
+            <span class="badge-title">72 hr</span>
+            <span class="badge-copy">quick-turn rush installs</span>
+          </div>
+          <div class="hero__badge">
+            <span class="badge-title">Full-service</span>
+            <span class="badge-copy">design · delivery · teardown</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero-card" [appFadeInOnScroll]="{ delay: 0.1 }">
+          <div class="hero-card__header">
+            <span>Feature install</span>
+            <i class="pi pi-bolt"></i>
+          </div>
+          <div class="hero-card__event">
+            <div>
+              <p class="eyebrow">Launch weekend</p>
+              <p class="title">Neon Sky Arcade</p>
+            </div>
+            <span class="hero-card__tag">Organic cloud garland</span>
+          </div>
+          <ul class="hero-card__specs">
+            <li>
+              <span>Color story</span>
+              <strong>Blush · melon · orchid</strong>
+            </li>
+            <li>
+              <span>Scale</span>
+              <strong>24 ft suspended ribbon</strong>
+            </li>
+            <li>
+              <span>Add-ons</span>
+              <strong>Foil moons · neon typography</strong>
+            </li>
+          </ul>
+          <div class="hero-card__footer">
+            <div>
+              <p class="eyebrow">Investment</p>
+              <p class="title">$1,850</p>
+            </div>
+            <button pButton size="small" label="Book this look" severity="secondary" routerLink="/contact" type="button"></button>
+          </div>
+        </div>
+        <app-balloon-cluster
+          class="hero__balloons"
+          [balloons]="heroBalloons"
+          justify="flex-end"
+          [appFadeInOnScroll]="{ delay: 0.2, y: 80 }"
+        ></app-balloon-cluster>
+      </div>
+    </section>
+  </div>
+</section>
+
+<div class="home-body">
+  <section class="services">
+    <div class="services__card" [appFadeInOnScroll]="{ delay: 0.05 }">
+      <i class="pi pi-camera"></i>
+      <p class="eyebrow">Photo-worthy</p>
+      <h3>Grand entry moments</h3>
+      <p>Statement arches with layered textures, disco balls, florals, and custom vinyl.</p>
+    </div>
+    <div class="services__card" [appFadeInOnScroll]="{ delay: 0.15 }">
+      <i class="pi pi-building"></i>
+      <p class="eyebrow">Corporate ready</p>
+      <h3>Brand activations</h3>
+      <p>Onsite fabrication, Pantone matching, and modular installs for multi-day events.</p>
+    </div>
+    <div class="services__card" [appFadeInOnScroll]="{ delay: 0.25 }">
+      <i class="pi pi-heart"></i>
+      <p class="eyebrow">Intimate wonder</p>
+      <h3>Parties & showers</h3>
+      <p>Playful clusters sized for living rooms, micro-weddings, and backyard brunches.</p>
+    </div>
+  </section>
+
+  <section class="cta" [appFadeInOnScroll]="{ delay: 0.1 }">
+    <div>
+      <p class="eyebrow">Need something custom?</p>
+      <h2>Send your mood board and we’ll sketch a balloon storyboard in 24 hours.</h2>
+    </div>
+    <button pButton size="small" label="Request a concept" icon="pi pi-send" routerLink="/contact" type="button"></button>
+  </section>
+
+  <app-mosaic-gallery
+    [images]="galleryImages"
+    [eyebrow]="galleryEyebrow"
+    [heading]="galleryHeading"
+    [description]="galleryCopy"
+  ></app-mosaic-gallery>
+</div>

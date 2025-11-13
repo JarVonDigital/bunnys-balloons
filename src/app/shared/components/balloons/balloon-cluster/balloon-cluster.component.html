@@ -1,0 +1,5 @@
+<div class="balloon-cluster" [ngStyle]="clusterStyles">
+  @for (balloon of balloons; track balloon.id) {
+    <app-balloon [config]="balloon"></app-balloon>
+  }
+</div>

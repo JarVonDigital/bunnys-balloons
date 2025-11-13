@@ -1,0 +1,145 @@
+.footer-card {
+  border: none;
+  box-shadow: 0 10px 35px rgba(22, 22, 22, 0.08);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footer__brand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.footer__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.25rem 0 0;
+}
+
+.footer__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.footer__phone {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer__phone--block {
+  display: inline-flex;
+  font-size: 1.35rem;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.footer__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.footer__section-title {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  margin: 0;
+  color: var(--text-color-secondary);
+}
+
+.footer__address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-style: normal;
+  margin: 0;
+}
+
+.footer__map-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer__list li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.footer__subtitle {
+  margin: 0;
+  color: var(--text-color-secondary);
+}
+
+.footer__note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-color-secondary);
+}
+
+.footer__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer__nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: inherit;
+}
+
+.footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+}
+
+@media (max-width: 640px) {
+  .footer__cta {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .footer__phone--block {
+    font-size: 1.1rem;
+  }
+}

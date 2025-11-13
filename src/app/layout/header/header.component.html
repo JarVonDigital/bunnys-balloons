@@ -1,0 +1,22 @@
+<p-menubar [model]="navLinks">
+  <ng-template pTemplate="start">
+    <button
+      pButton
+      routerLink="/"
+      label="Bunny's Balloons"
+      class="p-button-text font-bold"
+      size="small"
+      type="button"
+    ></button>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <button
+      pButton
+      routerLink="/contact"
+      label="Book Now"
+      icon="pi pi-calendar"
+      size="small"
+      type="button"
+    ></button>
+  </ng-template>
+</p-menubar>

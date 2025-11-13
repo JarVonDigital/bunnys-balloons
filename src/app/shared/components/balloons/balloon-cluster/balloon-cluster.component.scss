@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+}
+
+.balloon-cluster {
+  display: flex;
+  gap: var(--balloon-cluster-gap, 1rem);
+  align-items: flex-end;
+}
