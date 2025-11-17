@@ -6,6 +6,15 @@
       Share the mood, venue, and timing. We will respond with availability, design concepts, and an
       estimated investment that reflects the artistry Bunny&apos;s Balloons is known for.
     </p>
+    <p>
+      Installs are reserved at least two weeks out so we can allocate a two-hour setup window and the
+      right crew. We travel throughout Belleville, Michigan and happily go farther than 30 miles into
+      the Detroit metro with a simple mileage adjustment.
+    </p>
+    <p>
+      We exclusively source high-quality balloons for lasting color and durability, but let us know if
+      you have a special printed piece you would love incorporated—we&apos;ll evaluate it together.
+    </p>
     <div class="contact__chips">
       @for (highlight of highlights; track highlight) {
         <p-chip [label]="highlight"></p-chip>
@@ -25,34 +34,22 @@
         class="contact__cluster"
       >
         <div class="contact__ambient" aria-hidden="true">
-          <span
-            #roseAmbient
-            class="contact__ambient-balloon contact__ambient-balloon--rose"
-            data-pointer-range="34"
-            (pointermove)="handleAmbientPointer($event, roseAmbient)"
-            (pointerleave)="resetAmbientPointerElement(roseAmbient)"
-          ></span>
-          <span
-            #sherbetAmbient
-            class="contact__ambient-balloon contact__ambient-balloon--sherbet"
-            data-pointer-range="28"
-            (pointermove)="handleAmbientPointer($event, sherbetAmbient)"
-            (pointerleave)="resetAmbientPointerElement(sherbetAmbient)"
-          ></span>
-          <span
-            #lavenderAmbient
-            class="contact__ambient-balloon contact__ambient-balloon--lavender"
-            data-pointer-range="26"
-            (pointermove)="handleAmbientPointer($event, lavenderAmbient)"
-            (pointerleave)="resetAmbientPointerElement(lavenderAmbient)"
-          ></span>
-          <span
-            #goldAmbient
-            class="contact__ambient-balloon contact__ambient-balloon--gold"
-            data-pointer-range="22"
-            (pointermove)="handleAmbientPointer($event, goldAmbient)"
-            (pointerleave)="resetAmbientPointerElement(goldAmbient)"
-          ></span>
+          <app-ambient-balloon
+            variantClass="contact__ambient-balloon--rose"
+            [pointerRange]="34"
+          ></app-ambient-balloon>
+          <app-ambient-balloon
+            variantClass="contact__ambient-balloon--sherbet"
+            [pointerRange]="28"
+          ></app-ambient-balloon>
+          <app-ambient-balloon
+            variantClass="contact__ambient-balloon--lavender"
+            [pointerRange]="26"
+          ></app-ambient-balloon>
+          <app-ambient-balloon
+            variantClass="contact__ambient-balloon--gold"
+            [pointerRange]="22"
+          ></app-ambient-balloon>
         </div>
         <div
           class="contact__balloon contact__balloon--details"
@@ -181,9 +178,9 @@
         >
           <defs>
             <linearGradient id="contactStringGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
-              <stop offset="65%" stop-color="#f5d28a" stop-opacity="0.9" />
-              <stop offset="100%" stop-color="#b9802a" stop-opacity="0.9" />
+              <stop offset="0%" stop-color="#fffaf2" stop-opacity="0.95" />
+              <stop offset="65%" stop-color="#dfca9e" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#a15512" stop-opacity="0.9" />
             </linearGradient>
           </defs>
           <path

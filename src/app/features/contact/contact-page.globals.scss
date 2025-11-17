@@ -1,0 +1,435 @@
+.contact__balloon {
+  position: relative;
+  width: clamp(220px, 30vw, 260px);
+  min-height: clamp(280px, 38vw, 340px);
+  aspect-ratio: 3 / 4;
+  --balloon-base-transform: translate3d(0, 0, 0);
+  --balloon-float-x: 0px;
+  --balloon-float-y: 0px;
+  --balloon-tilt: 0deg;
+  --balloon-focus-y: 0px;
+  --balloon-focus-x: 0px;
+  --balloon-focus-scale: 1;
+  --balloon-peer-slide-x: 0px;
+  --balloon-peer-bob-y: 0px;
+  --balloon-peer-tilt: 0deg;
+  --balloon-layer-base: 1;
+  --balloon-layer-shift: 0;
+  --balloon-fill: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brand-cream, #eee8ce) 94%, #ffffff 6%),
+      color-mix(in srgb, var(--brand-oat, #dfca9e) 70%, var(--brand-cream, #eee8ce) 30%) 60%,
+      color-mix(in srgb, var(--brand-rust, #a15512) 60%, var(--brand-mahogany, #75360f) 40%)
+    );
+  --balloon-glow: color-mix(in srgb, var(--brand-rust, #a15512) 35%, transparent);
+  --balloon-rim: color-mix(in srgb, var(--brand-cream, #eee8ce) 80%, transparent);
+  padding: clamp(1rem, 1.5vw, 1.25rem);
+  border-radius: 54% 54% 46% 46% / 70% 70% 42% 42%;
+  clip-path: path(
+    'M50% 0% C 81% 0% 100% 27% 100% 58% C 100% 80% 78% 98% 66% 102% C 61% 112% 56% 130% 50% 138% C 44% 130% 39% 112% 34% 102% C 22% 98% 0% 80% 0% 58% C 0% 27% 19% 0% 50% 0%'
+  );
+  background:
+    radial-gradient(circle at 26% 20%, rgba(255, 255, 255, 0.7), transparent 48%),
+    radial-gradient(circle at 70% 42%, rgba(255, 255, 255, 0.25), transparent 60%),
+    var(--balloon-fill);
+  background-blend-mode: soft-light;
+  box-shadow:
+    inset 0 20px 38px rgba(255, 255, 255, 0.55),
+    inset 0 -28px 42px color-mix(in srgb, var(--contact-ember) 35%, transparent),
+    0 35px 70px var(--balloon-glow);
+  border: 1.5px solid var(--balloon-rim);
+  overflow: hidden;
+  transform-origin: center top;
+  transform: var(--balloon-base-transform)
+    translate3d(var(--balloon-peer-slide-x), var(--balloon-peer-bob-y), 0)
+    translate3d(var(--balloon-float-x), var(--balloon-float-y), 0)
+    rotate(var(--balloon-tilt))
+    rotate(var(--balloon-peer-tilt))
+    translate3d(var(--balloon-focus-x), var(--balloon-focus-y), 0)
+    scale(var(--balloon-focus-scale));
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+  z-index: calc(var(--balloon-layer-base) + var(--balloon-layer-shift));
+}
+
+.contact__balloon::before {
+  content: '';
+  position: absolute;
+  inset: 6% 10% 18% 8%;
+  border-radius: 50% 50% 40% 40% / 78% 78% 38% 38%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.55), transparent 65%);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.contact__balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 34px;
+  height: 26px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.65), rgba(0, 0, 0, 0.18));
+  border-radius: 52% 52% 36% 36%;
+  box-shadow:
+    inset 0 -4px 8px rgba(0, 0, 0, 0.18),
+    0 2px 3px rgba(255, 255, 255, 0.45);
+  z-index: 1;
+}
+
+.contact__balloon.is-active {
+  --balloon-layer-shift: 12;
+  box-shadow:
+    inset 0 24px 40px rgba(255, 255, 255, 0.65),
+    inset 0 -28px 40px rgba(87, 54, 8, 0.25),
+    0 45px 90px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.04);
+}
+
+.contact__balloon--details {
+  position: absolute;
+  top: 0;
+  left: 6%;
+  --balloon-fill: radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.45), transparent 45%),
+    linear-gradient(
+      140deg,
+      color-mix(in srgb, var(--brand-cream, #eee8ce) 92%, #ffffff 8%),
+      color-mix(in srgb, var(--brand-oat, #dfca9e) 65%, var(--brand-cream, #eee8ce) 35%) 60%,
+      color-mix(in srgb, var(--brand-rust, #a15512) 55%, var(--brand-mahogany, #75360f) 45%)
+    );
+  --balloon-glow: color-mix(in srgb, var(--brand-rust, #a15512) 40%, transparent);
+}
+
+.contact__balloon--event {
+  position: absolute;
+  top: 8%;
+  right: 5%;
+  --balloon-fill: radial-gradient(circle at 25% 15%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(
+      130deg,
+      color-mix(in srgb, var(--brand-cream, #eee8ce) 90%, #ffffff 10%),
+      color-mix(in srgb, var(--brand-oat, #dfca9e) 60%, var(--brand-rust, #a15512) 40%) 58%,
+      color-mix(in srgb, var(--brand-mahogany, #75360f) 55%, var(--brand-espresso, #5c482e) 45%)
+    );
+  --balloon-glow: color-mix(in srgb, var(--brand-mahogany, #75360f) 35%, transparent);
+  --balloon-rim: color-mix(in srgb, var(--brand-cream, #eee8ce) 85%, transparent);
+}
+
+.contact__balloon--message {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  --balloon-base-transform: translate3d(-50%, 0, 0);
+  --balloon-fill: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brand-cream, #eee8ce) 93%, #ffffff 7%),
+      color-mix(in srgb, var(--brand-oat, #dfca9e) 65%, var(--brand-cream, #eee8ce) 35%) 55%,
+      color-mix(in srgb, var(--brand-rust, #a15512) 60%, var(--brand-espresso, #5c482e) 40%)
+    );
+  --balloon-glow: color-mix(in srgb, var(--brand-rust, #a15512) 32%, transparent);
+  --balloon-rim: color-mix(in srgb, var(--brand-cream, #eee8ce) 82%, transparent);
+}
+
+.contact__balloon-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+  padding: 0.5rem 1rem 1.25rem;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 36px;
+  backdrop-filter: blur(6px);
+}
+
+.contact__section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: color-mix(in srgb, var(--brand-mahogany, #75360f) 85%, #ffffff 15%);
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.contact__fields {
+  display: grid;
+  gap: clamp(0.85rem, 1.8vw, 1.1rem);
+  justify-items: center;
+  width: 100%;
+}
+
+.contact__fields--two {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  align-items: center;
+}
+
+.contact__field label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--brand-espresso, #3b2818) 65%, #ffffff 35%);
+  text-align: center;
+}
+
+.contact__control {
+  width: calc(100% - 2rem);
+  display: block;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 6px 16px rgba(92, 72, 46, 0.18);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.contact__control--textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.contact__calendar-button.p-button {
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.82);
+  color: color-mix(in srgb, var(--brand-espresso, #3b2818) 75%, #ffffff 25%);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 6px 16px rgba(92, 72, 46, 0.18);
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.contact__calendar-button.p-button.is-invalid {
+  border-color: color-mix(in srgb, var(--brand-mahogany, #75360f) 65%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--brand-mahogany, #75360f) 35%, transparent),
+    0 6px 16px rgba(92, 72, 46, 0.18);
+}
+
+.contact__calendar-button.p-button .p-button-label {
+  flex: 0 1 auto;
+}
+
+.contact__actions {
+  text-align: center;
+}
+
+.contact__actions--anchor {
+  width: min(360px, 100%);
+  margin-top: -0.25rem;
+}
+
+.contact__shine,
+.contact__texture,
+.contact__gloss,
+.contact__halo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact__shine {
+  inset: 10% auto auto 15%;
+  width: 45%;
+  height: 42%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85), transparent 65%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+.contact__texture {
+  background-image: linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      transparent 55%,
+      rgba(255, 255, 255, 0.12) 100%
+    ),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.12), transparent 50%);
+  opacity: 0.6;
+  mix-blend-mode: soft-light;
+}
+
+.contact__gloss {
+  inset: 12% 18% auto auto;
+  width: 18%;
+  height: 65%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 85%);
+  opacity: 0.65;
+  filter: blur(0.5px);
+  mix-blend-mode: screen;
+}
+
+.contact__halo {
+  inset: -6% -6% -8%;
+  background: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in srgb, #fffaf1 55%, transparent) 0%,
+    transparent 65%
+  );
+  opacity: 0.85;
+  mix-blend-mode: screen;
+}
+
+.contact__tether {
+  width: min(620px, 100%);
+  margin: -1rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.contact__strings {
+  width: 100%;
+  height: clamp(190px, 26vw, 250px);
+  pointer-events: none;
+  overflow: visible;
+  transform: translateY(-0.4rem);
+}
+
+.contact__string {
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 2px 6px color-mix(in srgb, var(--brand-espresso, #5c482e) 35%, transparent))
+    drop-shadow(0 10px 18px color-mix(in srgb, var(--brand-rust, #a15512) 25%, transparent));
+  transition: stroke-width 0.2s ease, opacity 0.2s ease;
+}
+
+.contact__string--details {
+  stroke-width: 2.6;
+}
+
+.contact__string--event {
+  stroke-width: 2.5;
+}
+
+.contact__string--message {
+  stroke-width: 2.8;
+}
+
+.contact__alerts {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contact__control.p-inputtextarea {
+  padding: 0.9rem 1rem;
+}
+
+.contact__chips .p-chip {
+  background: color-mix(in srgb, var(--surface-card, #fffaf1) 80%, transparent);
+  color: color-mix(in srgb, var(--brand-espresso, #3b2818) 75%, #ffffff 25%);
+  border: 1px solid color-mix(in srgb, var(--brand-oat, #dfca9e) 55%, transparent);
+  font-weight: 600;
+}
+
+.contact__actions .p-button {
+  width: 100%;
+  padding-block: 0.95rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  background: linear-gradient(120deg, var(--brand-rust, #a15512), var(--brand-espresso, #5c482e));
+  border: none;
+  color: #fffaf2;
+  font-weight: 600;
+  box-shadow:
+    0 12px 25px rgba(92, 72, 46, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.contact__actions--anchor .p-button {
+  margin-top: -0.4rem;
+}
+
+.contact__alerts .p-message {
+  border-radius: 1rem;
+  font-weight: 600;
+  box-shadow: 0 12px 25px rgba(92, 72, 46, 0.12);
+}
+
+.contact__alerts .p-message-success {
+  background: color-mix(in srgb, var(--surface-card, #fffaf1) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand-oat, #dfca9e) 60%, transparent);
+  color: color-mix(in srgb, var(--brand-espresso, #3b2818) 80%, #ffffff 20%);
+}
+
+.contact__alerts .p-message-error {
+  background: color-mix(in srgb, var(--brand-cream, #eee8ce) 75%, var(--brand-mahogany, #75360f) 25%);
+  border: 1px solid color-mix(in srgb, var(--brand-mahogany, #75360f) 45%, transparent);
+  color: var(--brand-mahogany, #75360f);
+}
+
+@media (max-width: 768px) {
+  .contact__cluster {
+    height: 760px;
+  }
+
+  .contact__balloon {
+    width: min(320px, 90%);
+    min-height: 300px;
+  }
+
+  .contact__balloon--details {
+    top: 0;
+    left: 50%;
+    --balloon-base-transform: translate3d(-50%, 0, 0);
+  }
+
+  .contact__balloon--event {
+    top: 32%;
+    left: 50%;
+    right: auto;
+    --balloon-base-transform: translate3d(-50%, 0, 0);
+  }
+
+  .contact__balloon--message {
+    bottom: auto;
+    top: 64%;
+  }
+
+  .contact__tether {
+    margin-top: 0;
+  }
+
+  .contact__strings {
+    height: 220px;
+  }
+}

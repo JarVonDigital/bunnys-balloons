@@ -57,3 +57,11 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## SEO & Metadata Playbook
+
+- **Centralized service** – `SeoService` (`src/app/core/services/seo.service.ts`) owns titles, meta descriptions, structured data, social tags, and canonical URLs. Update the `SITE_URL` constant inside that file if you deploy to a different domain.
+- **Page-specific metadata** – Each standalone page component injects `SeoService` and calls `seo.update({...})` with its description, keywords, and optional JSON-LD. When you create new routes, copy that pattern so the page earns dedicated metadata at load time.
+- **Structured data** – Home, About, Packages, Calendar, Contact, and FAQ pages now emit Schema.org payloads (LocalBusiness, AboutPage, Service, WebPage, ContactPage, FAQPage). Enhance or extend these objects if you add new services or want to expose reviews/events.
+- **Robots & sitemap** – `public/robots.txt`, `public/sitemap.xml`, and `public/humans.txt` are published as static assets. Update the sitemap whenever you launch a new page or retire a route so search engines can crawl it quickly.
+- **Authoring tips** – Keep copy location-rich (Belleville, Michigan / Detroit metro) and keep alt text descriptive to reinforce context. After large copy or layout changes, re-run `npm run build` to confirm Angular compiles all SEO injections cleanly.

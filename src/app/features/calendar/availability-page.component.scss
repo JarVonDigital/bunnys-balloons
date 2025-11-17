@@ -1,1 +1,227 @@
-/* Styling handled by PrimeNG components */
+:host {
+  display: block;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 4vw, 4rem);
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.35), transparent 60%)
+      var(--surface-ground, #fffaf1);
+  --calendar-open: color-mix(in srgb, var(--brand-rust, #a15512) 75%, var(--brand-espresso, #5c482e) 25%);
+  --calendar-held: color-mix(in srgb, var(--brand-mahogany, #75360f) 65%, var(--brand-oat, #dfca9e) 35%);
+  --calendar-booked: color-mix(in srgb, var(--brand-mahogany, #75360f) 85%, #000000 15%);
+  --calendar-card-bg: var(--surface-card, #fffaf1);
+  --calendar-border: color-mix(in srgb, var(--brand-oat, #dfca9e) 55%, transparent);
+  --calendar-muted: color-mix(in srgb, var(--brand-espresso, #3b2818) 55%, #ffffff 45%);
+  --calendar-soft: color-mix(in srgb, var(--brand-cream, #eee8ce) 85%, #ffffff 15%);
+  --calendar-outline: color-mix(in srgb, var(--brand-mahogany, #75360f) 65%, #ffffff 35%);
+}
+
+:host ::ng-deep .calendar-panel .p-panel-content {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border-radius: 1.5rem;
+  background: var(--calendar-card-bg);
+  border: 1px solid var(--calendar-border);
+  box-shadow: 0 25px 50px rgba(92, 72, 46, 0.12);
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--brand-espresso, #3b2818);
+}
+
+.calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.calendar__heading {
+  text-align: center;
+}
+
+.calendar__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-rust, #a15512) 70%, #ffffff 30%);
+  margin: 0;
+}
+
+.calendar__heading h2 {
+  margin: 0.15rem 0 0;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--brand-espresso, #5c482e);
+}
+
+.calendar__nav {
+  border: 1px solid var(--calendar-border);
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: var(--calendar-card-bg);
+  color: var(--brand-espresso, #3b2818);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 12px 20px rgba(92, 72, 46, 0.12);
+}
+
+.calendar__nav:hover {
+  background: color-mix(in srgb, var(--calendar-card-bg) 70%, var(--calendar-soft) 30%);
+  border-color: color-mix(in srgb, var(--brand-oat, #dfca9e) 65%, transparent);
+  transform: translateY(-2px);
+}
+
+.calendar__nav:active {
+  transform: translateY(0);
+}
+
+.calendar__nav:focus-visible,
+.calendar__day:focus-visible {
+  outline: 2px solid var(--calendar-outline);
+  outline-offset: 2px;
+}
+
+.calendar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--calendar-muted);
+}
+
+.calendar__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.calendar__legend-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  box-shadow: 0 6px 15px rgba(92, 72, 46, 0.15);
+}
+
+.calendar__legend-dot--open {
+  background: var(--calendar-open);
+}
+
+.calendar__legend-dot--held {
+  background: var(--calendar-held);
+}
+
+.calendar__legend-dot--booked {
+  background: var(--calendar-booked);
+}
+
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.calendar__day-name {
+  text-align: center;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--calendar-muted);
+  padding-bottom: 0.35rem;
+}
+
+.calendar__day {
+  border: 1px solid var(--calendar-border);
+  border-radius: 1rem;
+  background: var(--calendar-card-bg);
+  padding: 0.75rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 96px;
+  box-shadow: 0 15px 35px rgba(92, 72, 46, 0.08);
+}
+
+.calendar__day:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--calendar-card-bg) 60%, var(--calendar-soft) 40%);
+  border-color: color-mix(in srgb, var(--brand-oat, #dfca9e) 65%, transparent);
+}
+
+.calendar__day:disabled,
+.calendar__day.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.calendar__day.is-outside {
+  color: color-mix(in srgb, var(--calendar-muted) 60%, #ffffff 40%);
+  background: color-mix(in srgb, var(--calendar-card-bg) 50%, var(--calendar-soft) 50%);
+}
+
+.calendar__day.is-today {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand-rust, #a15512) 40%, #ffffff 60%);
+}
+
+.calendar__day.is-open {
+  border-color: color-mix(in srgb, var(--calendar-open) 75%, #ffffff 25%);
+}
+
+.calendar__day.is-held {
+  border-color: color-mix(in srgb, var(--calendar-held) 70%, #ffffff 30%);
+}
+
+.calendar__day.is-booked {
+  border-color: color-mix(in srgb, var(--calendar-booked) 70%, #ffffff 30%);
+  background: color-mix(in srgb, var(--calendar-card-bg) 40%, var(--calendar-booked) 5%);
+}
+
+.calendar__date {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.calendar__status {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--calendar-muted);
+}
+
+.calendar__status--muted {
+  color: color-mix(in srgb, var(--calendar-muted) 60%, #ffffff 40%);
+}
+
+.calendar__cta {
+  margin: 0;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--brand-espresso, #3b2818) 70%, #ffffff 30%);
+}
+
+@media (max-width: 768px) {
+  :host ::ng-deep .calendar-panel .p-panel-content {
+    padding: 1.25rem;
+  }
+
+  .calendar__grid {
+    gap: 0.35rem;
+  }
+
+  .calendar__day {
+    padding: 0.5rem;
+    min-height: 72px;
+  }
+
+  .calendar__header {
+    flex-direction: column;
+  }
+}

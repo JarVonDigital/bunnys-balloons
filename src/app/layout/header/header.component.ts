@@ -15,6 +15,8 @@ import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import tinycolor from 'tinycolor2';
+import { NavigationService } from '../../core/services/navigation.service';
+import { NavigationLink } from '../../shared/models/navigation-link.model';
 
 @Component({
   selector: 'app-header',
@@ -26,18 +28,15 @@ import tinycolor from 'tinycolor2';
 export class HeaderComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly navigationService = inject(NavigationService);
   private contrastFrame: number | null = null;
 
   @HostBinding('class.has-dark-backdrop')
   protected hasDarkBackdrop = false;
 
-  protected readonly navLinks: MenuItem[] = [
-    { label: 'Home', routerLink: ['/'], routerLinkActiveOptions: { exact: true } },
-    { label: 'About', routerLink: ['/about'] },
-    { label: 'Calendar', routerLink: ['/calendar'] },
-    { label: 'Packages', routerLink: ['/packages'] },
-    { label: 'Contact', routerLink: ['/contact'] }
-  ];
+  protected readonly navLinks: MenuItem[] = this.navigationService.primaryLinks.map((link) =>
+    this.buildMenuItem(link)
+  );
 
   ngAfterViewInit(): void {
     this.scheduleContrastMeasurement();
@@ -57,6 +56,14 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
     if (this.contrastFrame !== null) {
       cancelAnimationFrame(this.contrastFrame);
     }
+  }
+
+  private buildMenuItem(link: NavigationLink): MenuItem {
+    const item: MenuItem = { label: link.label, routerLink: [link.path] };
+    if (link.exact) {
+      item.routerLinkActiveOptions = { exact: true };
+    }
+    return item;
   }
 
   private scheduleContrastMeasurement(): void {

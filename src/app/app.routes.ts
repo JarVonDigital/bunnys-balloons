@@ -34,6 +34,16 @@ export const routes: Routes = [
         path: 'contact',
         loadComponent: () =>
           import('./features/contact/contact-page.component').then((m) => m.ContactPageComponent)
+      },
+      {
+        path: 'faq',
+        loadComponent: () =>
+          import('./features/faq/faq-page.component').then((m) => m.FaqPageComponent)
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./features/login/login-page.component').then((m) => m.LoginPageComponent)
       }
     ]
   },

@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { NavigationService } from '../../core/services/navigation.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,11 +12,12 @@ import { ButtonModule } from 'primeng/button';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
+  private readonly navigationService = inject(NavigationService);
   readonly currentYear = new Date().getFullYear();
   readonly location = {
-    name: 'Studio & showroom',
-    street: '2346 Artisan Row',
-    cityStateZip: 'Austin, TX 78704'
+    name: 'Belleville studio & showroom',
+    street: '150 Main Street',
+    cityStateZip: 'Belleville, MI 48111'
   };
 
   readonly phone = {
@@ -29,11 +31,5 @@ export class FooterComponent {
     { label: 'Sun', value: 'By appointment only' }
   ] as const;
 
-  readonly sitemapLinks = [
-    { label: 'Home', routerLink: '/' },
-    { label: 'About', routerLink: '/about' },
-    { label: 'Packages', routerLink: '/packages' },
-    { label: 'Calendar', routerLink: '/calendar' },
-    { label: 'Contact', routerLink: '/contact' }
-  ] as const;
+  readonly sitemapLinks = this.navigationService.primaryLinks;
 }

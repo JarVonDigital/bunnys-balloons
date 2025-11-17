@@ -1,26 +1,72 @@
-<p-panel header="Calendar">
-  <p class="p-mt-0">Review open dates and submit a request for your celebration.</p>
+<p-panel header="Calendar" styleClass="calendar-panel">
+  <div class="calendar">
+    <div class="calendar__header">
+      <button
+        type="button"
+        class="calendar__nav"
+        aria-label="Previous month"
+        (click)="goToPreviousMonth()"
+      >
+        <span aria-hidden="true">&lsaquo;</span>
+      </button>
 
-  @if (availability$ | async; as slots) {
-    <p-table [value]="slots" responsiveLayout="scroll">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Date</th>
-          <th>Status</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-slot>
-        <tr>
-          <td>{{ slot.date | date: 'fullDate' }}</td>
-          <td>
-            <p-tag [severity]="statusSeverity(slot.status)" [value]="slot.status | titlecase"></p-tag>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  } @else {
-    <div class="p-d-flex p-jc-center p-ai-center p-py-4">
-      <p-progressSpinner></p-progressSpinner>
+      <div class="calendar__heading">
+        <p class="calendar__eyebrow">Now booking</p>
+        <h2>{{ monthLabel() }}</h2>
+      </div>
+
+      <button type="button" class="calendar__nav" aria-label="Next month" (click)="goToNextMonth()">
+        <span aria-hidden="true">&rsaquo;</span>
+      </button>
     </div>
-  }
+
+    <div class="calendar__legend" aria-label="Availability key">
+      <span class="calendar__legend-item">
+        <span class="calendar__legend-dot calendar__legend-dot--open" aria-hidden="true"></span>
+        Open
+      </span>
+      <span class="calendar__legend-item">
+        <span class="calendar__legend-dot calendar__legend-dot--held" aria-hidden="true"></span>
+        Held
+      </span>
+      <span class="calendar__legend-item">
+        <span class="calendar__legend-dot calendar__legend-dot--booked" aria-hidden="true"></span>
+        Booked
+      </span>
+    </div>
+
+    <div class="calendar__grid" aria-label="Monthly availability">
+      @for (dayName of dayNames; track dayName) {
+        <div class="calendar__day-name">{{ dayName }}</div>
+      }
+
+      @for (week of calendarWeeks(); track trackWeek($index, week)) {
+        @for (day of week; track trackDay($index, day)) {
+          <button
+            type="button"
+            class="calendar__day"
+            [class.is-outside]="!day.isCurrentMonth"
+            [class.is-today]="day.isToday"
+            [class.is-open]="day.status === 'open'"
+            [class.is-held]="day.status === 'held'"
+            [class.is-booked]="day.status === 'booked'"
+            [class.is-disabled]="!day.isSelectable"
+            [disabled]="!day.isSelectable"
+            (click)="onDaySelected(day)"
+          >
+            <span class="calendar__date">{{ day.label }}</span>
+            @if (day.status) {
+              <span class="calendar__status">{{ day.status | titlecase }}</span>
+            } @else if (day.isPast) {
+              <span class="calendar__status calendar__status--muted">Past date</span>
+            }
+          </button>
+        }
+      }
+    </div>
+
+    <p class="calendar__cta">
+      Tap any available day to open the contact form with your date prefilled.
+    </p>
+  </div>
 </p-panel>

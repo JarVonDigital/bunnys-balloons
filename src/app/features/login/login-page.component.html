@@ -1,0 +1,79 @@
+<section class="login">
+  <div class="login__panel">
+    <div class="login__intro">
+      <p class="login__eyebrow">Client portal</p>
+      <h1>Log in to confirm installs and review designs.</h1>
+      <p>
+        Access your curated timelines, sketches, and invoices in one warm, organized space. We keep
+        everything within the Bunny's Balloons palette so you can stay focused on the celebration.
+      </p>
+      <ul class="login__highlights">
+        <li>Approve updated design revisions</li>
+        <li>Track venue access windows and deliverables</li>
+        <li>Chat with your install lead</li>
+      </ul>
+    </div>
+
+    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+      <header>
+        <p class="login__eyebrow">Welcome back</p>
+        <h2>Sign in to your planning workspace</h2>
+        <p>We will remember your current session on this device.</p>
+      </header>
+
+      @if (submitSuccess()) {
+        <p-message severity="success" text="You are signed in. Redirecting…" />
+      }
+
+      @if (submitError(); as error) {
+        <p-message severity='error' [text]="error" />
+      }
+
+      <label class="login__label">
+        <span>Email address</span>
+        <input
+          pInputText
+          type="email"
+          placeholder="you@email.com"
+          formControlName="email"
+          autocomplete="email"
+        />
+        @if (controlHasError('email')) {
+          <small>Enter a valid email to continue.</small>
+        }
+      </label>
+
+      <label class="login__label">
+        <span>Password</span>
+        <input
+          pInputText
+          type="password"
+          placeholder="••••••••"
+          formControlName="password"
+          autocomplete="current-password"
+        />
+        @if (controlHasError('password')) {
+          <small>Password must be at least 6 characters.</small>
+        }
+      </label>
+
+      <div class="login__form-actions">
+        <p-checkbox
+          inputId="rememberMe"
+          formControlName="rememberMe"
+          binary="true"
+          label="Remember me on this device"
+        />
+        <a routerLink="/contact">Need access? Contact your planner.</a>
+      </div>
+
+      <button
+        pButton
+        type="submit"
+        label="Log in"
+        class="login__submit"
+        [loading]="isSubmitting()"
+      ></button>
+    </form>
+  </div>
+</section>

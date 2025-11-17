@@ -1,22 +1,54 @@
-<p-panel header="Packages & Pricing">
-  <p class="p-mt-0">Every package can be tailored with add-ons, premium installs, and travel.</p>
+<section class="packages">
+  <header class="packages__hero">
+    <p class="packages__eyebrow">Signature services</p>
+    <h1>Packages curated for immersive balloon experiences</h1>
+    <p>
+      Every option is rooted in our espresso-and-oat palette so the installs feel intentional and
+      editorial ready. Choose a foundation and we will dial in the textures, colors, and spatial design
+      to match your venue.
+    </p>
+  </header>
 
   @if (packages$ | async; as packages) {
-    <div class="p-grid p-gap-3">
+    <div class="packages__grid">
       @for (pkg of packages; track pkg.id) {
-        <div class="p-col-12 md:p-col-6">
-          <p-card [header]="pkg.title" [subheader]="(pkg.startingPrice | currency:'USD':'symbol') + '+'">
-            <p>{{ pkg.description }}</p>
-            <ul class="p-pl-3 p-m-0">
-              @for (item of pkg.includes; track item) {
-                <li>{{ item }}</li>
-              }
-            </ul>
-          </p-card>
-        </div>
+        <article class="package-card">
+          <div class="package-card__header">
+            <p class="package-card__badge">Starting investment</p>
+            <p class="package-card__price">
+              <strong>{{ pkg.startingPrice | currency: 'USD':'symbol':'1.0-0' }}</strong>
+              <span>+ customization</span>
+            </p>
+          </div>
+          <h2>{{ pkg.title }}</h2>
+          <p class="package-card__description">{{ pkg.description }}</p>
+          <ul class="package-card__list">
+            @for (item of pkg.includes; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </article>
       }
     </div>
   } @else {
-    <p>Loading package menu…</p>
+    <p class="packages__loading">Curating the latest packages…</p>
   }
-</p-panel>
+
+  <div class="packages__cta">
+    <div>
+      <p class="packages__eyebrow">Need something bespoke?</p>
+      <h2>Custom installations stay within the same warm palette for a cohesive story.</h2>
+    <p>
+      Share your venue or inspiration and we will sketch a lookbook that keeps every balloon in the
+      Bunny's Balloons color story.
+    </p>
+    <ul class="packages__logistics">
+      <li>Setup, delivery, and breakdown start at $75 (large truckloads: $125).</li>
+      <li>Most installs need a two-hour onsite window; intricate scenes may need longer.</li>
+      <li>Travel beyond 30 miles of Belleville, Michigan includes a simple mileage-based adjustment.</li>
+      <li>Reserve at least two weeks ahead&mdash;rush dates incur an additional fee.</li>
+    </ul>
+  </div>
+  <a routerLink="/contact" class="packages__cta-button">Plan your install</a>
+</div>
+</section>

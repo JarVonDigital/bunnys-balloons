@@ -10,13 +10,23 @@
     ></button>
   </ng-template>
   <ng-template pTemplate="end">
-    <button
-      pButton
-      routerLink="/contact"
-      label="Book Now"
-      icon="pi pi-calendar"
-      size="small"
-      type="button"
-    ></button>
+    <div class="header-actions">
+      <button
+        pButton
+        routerLink="/login"
+        label="Login"
+        class="p-button-text"
+        size="small"
+        type="button"
+      ></button>
+      <button
+        pButton
+        routerLink="/contact"
+        label="Book Now"
+        icon="pi pi-calendar"
+        size="small"
+        type="button"
+      ></button>
+    </div>
   </ng-template>
 </p-menubar>

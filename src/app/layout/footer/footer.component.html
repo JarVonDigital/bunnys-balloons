@@ -30,7 +30,7 @@
         </address>
         <a
           class="footer__map-link"
-          href="https://maps.app.goo.gl/?q=2346+Artisan+Row,+Austin,+TX+78704"
+          href="https://maps.app.goo.gl/?q=150+Main+Street,+Belleville,+MI+48111"
           target="_blank"
           rel="noopener"
         >
@@ -63,9 +63,9 @@
         <p class="footer__section-title">Sitemap</p>
         <nav class="footer__nav" aria-label="Footer sitemap">
           <ul>
-            @for (link of sitemapLinks; track link.routerLink) {
+            @for (link of sitemapLinks; track link.path) {
               <li>
-                <a [routerLink]="link.routerLink">{{ link.label }}</a>
+                <a [routerLink]="link.path">{{ link.label }}</a>
               </li>
             }
           </ul>
@@ -75,7 +75,7 @@
 
     <div class="footer__meta">
       <p>&copy; {{ currentYear }} Bunny's Balloons. All rights reserved.</p>
-      <p>Austin, TX · Serving the Hill Country & central Texas venues.</p>
+      <p>Belleville, MI · Serving Detroit, Ann Arbor & southeast Michigan venues.</p>
     </div>
   </footer>
 </p-card>

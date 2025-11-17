@@ -1,0 +1,32 @@
+<section class="faq">
+  <header class="faq__hero">
+    <p class="faq__eyebrow">Frequently asked questions</p>
+    <h1>The practical details that keep your install seamless.</h1>
+    <p>
+      From premium balloon sourcing to travel boundaries, here are the answers we revisit most
+      often. This page mirrors the promises inside every proposal so there are no surprises the week
+      of your event.
+    </p>
+    <a routerLink="/contact" class="faq__cta">Plan your install</a>
+  </header>
+
+  <div class="faq__list">
+    @for (faq of faqs; track faq.question) {
+      <details class="faq-item" [attr.open]="faq.defaultOpen ? '' : null">
+        <summary class="faq-item__question">
+          <span>{{ faq.question }}</span>
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </summary>
+        <p class="faq-item__answer">{{ faq.answer }}</p>
+      </details>
+    }
+  </div>
+
+  <div class="faq__support">
+    <p>
+      Still planning? Send your date, venue, and vision and I&apos;ll confirm availability, travel
+      fees, and the ideal window for setup and breakdown.
+    </p>
+    <a routerLink="/contact" class="faq__cta faq__cta--secondary">Send details</a>
+  </div>
+</section>

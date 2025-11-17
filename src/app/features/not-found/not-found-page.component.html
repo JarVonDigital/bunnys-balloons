@@ -1,4 +1,17 @@
-<p-card header="Page not found">
-  <p>The page you're after might have floated away. Let's get you back on track.</p>
-  <button pButton size="small" routerLink="/" label="Return home" icon="pi pi-arrow-left" type="button"></button>
-</p-card>
+<section class="not-found">
+  <div class="not-found__balloon" aria-hidden="true">
+    <span class="not-found__balloon-body"></span>
+    <span class="not-found__balloon-knot"></span>
+    <span class="not-found__balloon-string"></span>
+  </div>
+
+  <div class="not-found__content">
+    <p class="not-found__eyebrow">404</p>
+    <h1>Looks like this page drifted off.</h1>
+    <p>
+      The balloons, however, are right where they should be—rooted in our warm espresso palette. Let
+      us guide you back to the celebration.
+    </p>
+    <a routerLink="/" class="not-found__button">Return home</a>
+  </div>
+</section>
